@@ -814,7 +814,7 @@ void Pathtracer::render() {
 			Util::swap(indirect_in, indirect_out);
 		}
 
-		// À-Trous Filter
+		// ?Trous Filter
 		for (int i = 0; i < gpu_config.num_atrous_iterations; i++) {
 			int step_size = 1 << i;
 

@@ -404,7 +404,6 @@ static Handle<Medium> parse_medium(const XMLNode * node, Scene & scene) {
 			sigma_s = albedo  * sigma_t;
 			sigma_a = sigma_t - sigma_s;
 		}
-
 		float scale = xml_medium->get_child_value_optional("scale", 1.0f);
 		medium.from_sigmas(scale * sigma_a, scale * sigma_s);
 

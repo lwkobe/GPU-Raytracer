@@ -74,11 +74,13 @@ static void init_integrator(OwnPtr<Integrator> & integrator, const Window & wind
 int main(int num_args, char ** args) {
 	Args::parse(num_args, args);
 	if (cpu_config.scene_filenames.size() == 0) {
-		cpu_config.scene_filenames.push_back("Data/sponza/scene.xml"_sv);
+		//cpu_config.scene_filenames.push_back("Data/sponza/scene.xml"_sv);
+		cpu_config.scene_filenames.push_back("J:/2023-2024/NPhase/sphereDrop/dambreak00292.xml"_sv);
+
 	}
-	if (cpu_config.sky_filename.is_empty()) {
+	/*if (cpu_config.sky_filename.is_empty()) {
 		cpu_config.sky_filename = "Data/Skies/sky_15.hdr"_sv;
-	}
+	}*/
 
 	Timer timer = { };
 	timer.start();
@@ -110,7 +112,6 @@ int main(int num_args, char ** args) {
 
 	init_integrator(integrator, window, scene);
 	window.show();
-
 	PerfTest perf_test(*integrator.get(), false, cpu_config.scene_filenames[0].view());
 
 	ThreadPool::free();
@@ -118,7 +119,9 @@ int main(int num_args, char ** args) {
 	size_t initialization_time = timer.stop();
 	Timer::print_named_duration("Initialization"_sv, initialization_time);
 
-	timing.inv_perf_freq = 1.0 / double(SDL_GetPerformanceFrequency());
+	//timing.inv_perf_freq = 1.0 / double(SDL_GetPerformanceFrequency());
+	timing.inv_perf_freq = 0.0251 / double(SDL_GetPerformanceFrequency());
+
 	timing.start = SDL_GetPerformanceCounter();
 	timing.last  = timing.start;
 	timing.time_of_last_screenshot = INVALID;
